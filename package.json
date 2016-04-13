@@ -1,0 +1,29 @@
+{
+  "name": "gitbook-plugin-codetabs",
+  "version": "0.0.0",
+  "description": "Multiple languages code blocks for GitBook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitbookIO/plugin-codetabs.git"
+  },
+  "keywords": [
+    "gitbook",
+    "code"
+  ],
+  "engines": {
+    "gitbook": ">=3.0.0-pre.8"
+  },
+  "author": "Samy Pesse <samy@gitbook.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GitbookIO/plugin-codetabs/issues"
+  },
+  "homepage": "https://github.com/GitbookIO/plugin-codetabs#readme",
+  "dependencies": {
+    "escape-html": "^1.0.3"
+  }
+}
