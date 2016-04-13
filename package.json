@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-codetabs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Multiple languages code blocks for GitBook",
   "main": "index.js",
   "scripts": {
