@@ -39,7 +39,6 @@ module.exports = {
         codetabs: {
             blocks: ['language'],
             process: function(parentBlock) {
-                console.log(JSON.stringify(parentBlock, null, 4));
                 var blocks = [parentBlock].concat(parentBlock.blocks);
                 var tabsContent = '';
                 var tabsHeader = '';

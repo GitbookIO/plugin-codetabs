@@ -2,6 +2,8 @@
 
 Include multiple languages code block to your GitBook (for example when documenting an API).
 
+![Preview](./preview.png)
+
 ### Installation
 
 Adds the plugin to your `book.json`, then run `gitbook install` if you are building your book locally.
