@@ -1,5 +1,5 @@
 var escape = require('escape-html');
-const fetch = require("node-fetch");
+var fetch = require('node-fetch');
 
 /*
     Generate HTML for the tab in the header
