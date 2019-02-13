@@ -48,5 +48,8 @@ var React = require('react')
 {%- endcodetabs %}
 ```
 
+### Remote code sources
 
-
+Alternatively, you may provide a `url` attribute for a given language.  In that case,
+the body of the block is ignored and the content of the remote URL is used instead. The
+syntax highlighting is still controlled by the `type` attribute.
