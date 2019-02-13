@@ -1,4 +1,5 @@
 var escape = require('escape-html');
+const fetch = require("node-fetch");
 
 /*
     Generate HTML for the tab in the header
@@ -38,27 +39,41 @@ module.exports = {
     blocks: {
         codetabs: {
             blocks: ['language'],
-            process: function(parentBlock) {
+            process: async function(parentBlock) {
                 var blocks = [parentBlock].concat(parentBlock.blocks);
-                var tabsContent = '';
-                var tabsHeader = '';
 
-                blocks.forEach(function(block, i) {
+                let processBlock = async function(block, i) {
                     var isActive = (i == 0);
 
                     if (!block.kwargs.name) {
                         throw new Error('Code tab requires a "name" property');
                     }
 
-                    tabsHeader += createTab(block, i, isActive);
-                    tabsContent += createTabBody(block, i, isActive);
-                });
+                    if (block.kwargs.url) {
+                        block.body = await fetch(block.kwargs.url).then((res) => res.text());
+                    }
 
+                    return {
+                        tabHeader: createTab(block, i, isActive),
+                        tabContent: createTabBody(block, i, isActive)
+                    };
+                };
 
-                return '<div class="codetabs">' +
-                    '<div class="codetabs-header">' + tabsHeader + '</div>' +
-                    '<div class="codetabs-body">' + tabsContent + '</div>' +
-                '</div>';
+                let buildOutput = function(formattedResults) {
+                    let tabsHeader = '';
+                    let tabsContent = '';
+                    formattedResults.forEach(function(record) {
+                        tabsHeader += record.tabHeader;
+                        tabsContent+= record.tabContent;
+                    });
+
+                    return '<div class="codetabs">' +
+                        '<div class="codetabs-header">' + tabsHeader + '</div>' +
+                        '<div class="codetabs-body">' + tabsContent + '</div>' +
+                        '</div>';
+                };
+
+                return await Promise.all(blocks.map(processBlock)).then(buildOutput);
             }
         }
     }
